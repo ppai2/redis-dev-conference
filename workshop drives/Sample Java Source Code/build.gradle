@@ -1,0 +1,217 @@
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'redis.clients:jedis:2.9.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
+}
+
+//
+// Utilities
+//
+task clearDatabase(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'workshop.ClearDatabase'
+}
+
+
+//
+// Chapter 1 Exercises
+//
+task helloWorld(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch1.HelloWorld'
+}
+
+task connecting(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch1.Connecting'
+}
+
+
+task allCh1(dependsOn: ['clearDatabase', 'helloWorld', 'connecting'])
+
+//
+// Chapter 2
+//
+task upvoteItem(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch2.UpvoteItem'
+}
+
+task downvoteItem(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch2.DownvoteItem'
+}
+
+task weightedVotes(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch2.WeightedVotes'
+}
+
+task trackingVotes(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch2.TrackingVotes'
+}
+
+task allCh2(dependsOn: ['upvoteItem', 'downvoteItem', 'weightedVotes', 'trackingVotes'])
+
+//
+// Chapter 3
+//
+task workingWithGson(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch3.WorkingWithGson'
+}
+
+task addViewedItem(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch3.AddViewedItem'
+}
+
+task mostRecentlyViewed(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch3.MostRecentlyViewed'
+}
+
+task leastRecentlyViewed(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch3.LeastRecentlyViewed'
+}
+
+task mostRecentlyViewedNonDestructive(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch3.MostRecentlyViewedNonDestructive'
+}
+
+task getRecentlyViewed(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch3.GetRecentlyViewed'
+}
+
+task allCh3(dependsOn: ['clearDatabase', 'workingWithGson', 'addViewedItem', 'mostRecentlyViewed',
+      'leastRecentlyViewed', 'mostRecentlyViewedNonDestructive', 'getRecentlyViewed'])
+
+//
+// Ch4
+//
+task emptyUser(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch4.EmptyUser'
+}
+
+task addUser(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch4.AddDataToDatabase'
+}
+
+task getDataFromDatabase(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch4.GetDataFromDatabase'
+}
+
+task flexibleRecordStructure(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch4.FlexibleRecordStructure'
+}
+
+task workingWithHashFields(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch4.WorkingWithHashFields'
+}
+
+task hashsAsKeyValueStore(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch4.HashsAsKeyValueStore'
+}
+
+task allCh4 (dependsOn: ['emptyUser', 'addUser', 'getDataFromDatabase', 'flexibleRecordStructure',
+                         'workingWithHashFields', 'hashsAsKeyValueStore'])
+
+
+//
+// Ch5
+//
+task recordingPageView(type: JavaExec) {
+classpath = sourceSets.main.runtimeClasspath
+main = 'ch5.RecordingPageView'
+}
+
+task getUniqueViews(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch5.GetUniqueViews'
+}
+
+task reportingPageViews(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch5.ReportingPageViews'
+}
+
+task recordingPageViewIdx(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch5.RecordingPageViewIdx'
+}
+
+task reportingPageViewsIdx(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch5.ReportingPageViewsIdx'
+}
+
+task countMAU(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch5.CountMAU'
+}
+
+task absentUsers(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'ch5.AbsentUsers'
+}
+task allCh5 (dependsOn: ['clearDatabase', 'recordingPageView', 'getUniqueViews', 'reportingPageViews',
+        'recordingPageViewIdx', 'reportingPageViewsIdx', 'countMAU', 'absentUsers'])
+
+//
+// Section A
+//
+
+task pipelines(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'A.Pipelines'
+}
+
+task transactions(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'A.Transactions'
+}
+
+task allA (dependsOn: ['pipelines', 'transactions'])
+
+//
+// Section B
+//
+task lua101(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'B.Lua101'
+}
+
+task lua102(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'B.Lua102'
+}
+
+task lua103(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'B.Lua103'
+}
+
+task allB (dependsOn: ['lua101', 'lua102', 'lua103'])
+
+
